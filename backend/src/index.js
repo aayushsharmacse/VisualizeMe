@@ -9,6 +9,6 @@ connectDB()
     })
 })
 .catch((err)=>{
-    console.log("Error from src/index.js");
+    console.log("Error from src/index.js, connection might be failed");
     throw err;
 })

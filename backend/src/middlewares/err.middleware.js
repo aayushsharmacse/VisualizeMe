@@ -5,6 +5,6 @@ const errHandlerMiddleware=(err,req,res,next)=>{
     }
     console.log("Error not thrown by api");
     console.log(err);
-    return res.status(501).json({success:false,result:{message:"Error not thrown by api"}});
+    return res.status(501).json({success:false,result:{message:"Error not thrown by api directly"}});
 }
 export default errHandlerMiddleware;

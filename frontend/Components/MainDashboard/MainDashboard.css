@@ -1,0 +1,18 @@
+.portfolioDiv{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 100%;
+}
+.goToPortfolio{
+    flex: 1;
+    height: 3em;
+}
+.portfolioDiv>button:hover{
+    transform: scale(0.9);
+}
+.kill{
+    flex: 0.25;
+    background-color: rgb(247, 51, 51);
+}

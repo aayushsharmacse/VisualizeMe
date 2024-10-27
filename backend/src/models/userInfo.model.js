@@ -1,9 +1,56 @@
 import mongoose from "mongoose";
-import Section from "./section.model";
+const bulletSchema=new mongoose.Schema({
+    bulletDisplayImage:{
+        imageURI:{
+            type:String,
+        },
+        dimensionX:{
+            type:String,
+        },
+        dimensionY:{
+            type:String,
+        }
+    },
+    bulletHeader:{
+        type:String
+    },
+    bulletHeaderURI:{
+        type:String
+    },
+    bulletText:{
+        type:String
+    }
+}, {timestamps:true});
+
+
+const sectionSchema=new mongoose.Schema({
+    sectionHeader:{
+        type:String,
+    },
+    bullets:[
+        {
+            type:bulletSchema
+        }
+    ]
+}, {timestamps:true});
 
 const userInfoSchema=new mongoose.Schema({
-    profileImage:{
+    userName:{
         type:String
+    },
+    email:{
+        type:String,
+    },
+    profileImage:{
+        imageURI:{
+            type:String,
+        },
+        dimensionX:{
+            type:String,
+        },
+        dimensionY:{
+            type:String,
+        }
     },
     profileImageCaption:{
         type:String,
@@ -14,7 +61,7 @@ const userInfoSchema=new mongoose.Schema({
     },
     sections:[
         {
-            type:Section
+            type:sectionSchema
         }
     ]
 

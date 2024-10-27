@@ -1,35 +1,52 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import {createBrowserRouter,createRoutesFromElements,Route,RouterProvider} from 'react-router-dom'
+import './App.css';
+import NavLayout from "../Layouts/NavLayout.jsx"
+import About from "../Pages/About/about.jsx"
+import SigninOrSignup from "../Pages/SigninOrSignup/SigninOrSignup.jsx"
+import Home from "../Pages/Home/Home.jsx"
+import Dashboard from "../Pages/Dashboard/Dashboard.jsx"
+import Profile from "../Pages/Profile/Profile.jsx"
+import MainDashboard from "../Components/MainDashboard/MainDashboard.jsx"
+import CreatePortfolioLayout from "../Layouts/CreatePortfolioLayout/CreatePortfolioLayout.jsx";
+import CreatePortfolioByForm from '../Components/CreatePortfolioByForm/CreatePortfolioByForm.jsx';
+import CreatePortfolioByResume from "../Components/CreatePortfolioByResume/CreatePortfolioByResume.jsx";
+const router=createBrowserRouter(
+  createRoutesFromElements(
+    <Route path='/' element={<NavLayout/>}>
+      <Route index element={<Home/>}/>
+      <Route path='about' element={<About/>}/>
+      <Route path='signin' element={<SigninOrSignup/>}/>
+      <Route path='signup' element={<SigninOrSignup/>}/>
+      <Route  path="user/:id/profile" element={<Profile/>} />
+      <Route path='user/:id' element={<Dashboard/>}>
+        <Route index element={<MainDashboard/>}/>
+        <Route path='createportfolio' element={<CreatePortfolioLayout/>}>
+            <Route path='form' element={<CreatePortfolioByForm/>} />
+            <Route path='resume' element={<CreatePortfolioByResume/>} />
+        </Route>
+      </Route>
+      {/* <Route path='view' element={<ViewLayout/>}>
+        <Route index element={<View/>}
+        loader={usersPortfolioLoader}
+        />
+        <Route path=':id' 
+        element={<ViewUserPortfolio/>
+        loader={userPortfolioLoader} />}/>
+      </Route>
+      <Route path='help' element={<HelpLayout/>}>
+        <Route path='faq' element={<FAQ/>}/>
+        <Route path='contact' element={<ContactForm/>}/>
+      </Route> */}
+      <Route path='*' element={<Error/>} />
+    </Route>
+  )
+)
 
 function App() {
-  const [count, setCount] = useState(0)
-
+  
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+      <RouterProvider router={router}/>
   )
 }
 
-export default App
+export default App;

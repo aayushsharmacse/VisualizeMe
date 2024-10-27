@@ -1,0 +1,56 @@
+.completeFormDiv{
+    margin-top: 1em;
+    padding: 1em;
+    border-radius: 20px;
+    box-shadow: 0px 0px 10px var(--primary);
+}
+.completeFormDiv>form{
+    display: flex;
+    flex-direction: column;
+    /* justify-content: start; */
+    align-items: center;
+}
+.completeFormDiv form input{
+    /* border: 2px solid red; */
+    min-width: 80%;
+    padding: 0.2em;
+}
+.completeFormDiv form textarea{
+    min-height: 4em;
+    min-width: 80%;
+    padding: 0.2em;
+    resize: vertical;
+}
+.sectionDiv{
+    margin: 1em;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px var(--primary);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.bulletDiv{
+    position: relative;
+    margin: 1em;
+    max-width: 65vw;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px var(--secondary);
+}
+
+.crossIconForBulletsButton{
+    display: inline;
+    position: absolute;
+    top:3px;
+    right: 3px;
+}
+@media screen and (max-width:480px) {
+    .completeFormDiv form textarea{
+        height: 8em;
+    }
+    .crossIconForBulletsButton{
+        display: flex;
+        justify-content: end;
+        position: relative;
+    }
+}

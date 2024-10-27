@@ -1,0 +1,33 @@
+.complete{
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    /* align-items: center; */
+    text-align: center;
+}
+.details{
+    margin: 1em;
+}
+.inDetailsDivs{
+    margin: auto;
+    padding: 1em;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    /* align-items: center; */
+    max-width: 300px;
+}
+.inDetailsDivs>p:first-child{
+    font-weight:bold;
+}
+.details button{
+    margin-top: 1em;
+    padding: 0.3em;
+    background-color: var(--primary);
+    color: var(--text);
+    border-radius: 5px;
+}
+.details button:hover{
+    background-color: var(--secondary);
+    box-shadow: 2px 2px var(--primary);
+}

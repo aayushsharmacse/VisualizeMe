@@ -1,0 +1,36 @@
+.complete{
+    padding:1em;
+}
+.dashboard{
+    /* width: 100%; */
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap-reverse;
+    justify-content: space-around;
+}
+.userProfileDiv{
+    display: flex;
+    flex-direction: column;
+}
+.userProfileDiv>button{
+    margin-top: 1em;
+    padding: 0.3em;
+    background-color: var(--primary);
+    color: var(--text);
+    border-radius: 5px;
+}
+/* Written separately in case if want to use later */
+.userProfileDiv>button:hover{
+    /* background-color: rgb(153, 114, 216); */
+    transform: scale(1.3);
+    transition-duration: 500ms;
+}
+.userProfileDiv>button:hover{
+    background-color: var(--secondary);
+    box-shadow: 2px 2px var(--primary);
+}
+hr{
+    border: none;
+    height: 2px;
+    background-color: var(--secondary);
+}

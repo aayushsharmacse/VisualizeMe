@@ -16,10 +16,10 @@ const userSchema=new mongoose.Schema({
         type:String,
         require:true,
     },
-    userInfo:{
+    userInfo:[{
             type:mongoose.Schema.Types.ObjectId,
             ref:"UserInfo"
-    },
+    }],
     refreshToken:{
         type:String,
         default:null

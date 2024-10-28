@@ -7,7 +7,8 @@ import asyncHandler from "../utils/asyncHandler.util.js";
 import authMiddleware from "../middlewares/auth.middleware.js"
 import upload from "../middlewares/multer.middleware.js"
 import runGemini from "../utils/Gemini.util.js";
-import uploadOnCloudinary from "../utils/cloudinary.util.js"
+import uploadOnCloudinary from "../utils/cloudinary.util.js";
+import "mongoose";
 const userRouter=express.Router()
 
 userRouter.post("/signup",asyncHandler(async(req,res,next)=>{
@@ -99,10 +100,10 @@ userRouter.get("/signout",authMiddleware,asyncHandler(async(req,res,next)=>{
     //         new:true
     //     }
     // )
-    const options={
-        httpOnly:true,
-        secure:true
-    }
+    // const options={
+    //     httpOnly:true,
+    //     secure:true
+    // }
 
     return res.status(200)
             // .clearCookie("refreshToken",options)
@@ -116,44 +117,113 @@ userRouter.get("/signout",authMiddleware,asyncHandler(async(req,res,next)=>{
 // }));
 userRouter.get("/getuserportfolios",authMiddleware,asyncHandler(async (req,res)=>{
     const user=await User.findOne({_id:req.user._id});
-    if(user && user.userInfo){
+    if(user && user.userInfo && user.userInfo.length!==0){
     // console.log(user.userInfo)
         return createResponse(res,{userInfo:user.userInfo});
     }
     else{
-        // return next(createError(400, "Node user" ,"UserInfo not found from backend"));
+        // return next(createError(400, "No user" ,"UserInfo not found from backend"));
         return createResponse(res,{});
     }
 }));
+
+userRouter.get("/getsingleuserportfolio/:_id",authMiddleware,asyncHandler(async (req,res)=>{
+    // const user=await User.findOne({_id:req.user._id});
+    // if(user && user.userInfo && user.userInfo.length!==0){
+    console.log("entered gets ingle portfolio user, search for id=",req.params._id)
+        const userInfo=await UserInfo.findById(req.params._id);
+        return createResponse(res,{userInfo:userInfo});
+    // }
+    // else{
+        // return next(createError(400, "No user" ,"UserInfo not found from backend"));
+        // return createResponse(res,{});
+    // }
+}));
+
+userRouter.delete("/deleteportfolio/:_id",authMiddleware,asyncHandler(async (req,res)=>{
+    const user=await User.findOne({_id:req.user._id});
+    if(user && user.userInfo){
+        console.log("user.userInfo=",user.userInfo)
+            user.userInfo=user.userInfo.filter((portfolioId)=>{
+                //check here string vs objectId case
+                //console.log("portfolioId.equals(req.params._id)",portfolioId.equals(req.params._id))
+                return !portfolioId.equals(req.params._id)
+            });
+            await user.save();
+        console.log("user.userInfo=",user.userInfo)
+        await UserInfo.findByIdAndDelete(req.params._id);
+        return createResponse(res,{userInfo:user.userInfo});
+    }
+    else{
+        return createResponse(res,{});
+    }
+}));
+
 // userRouter.get('/createportfolioform',asyncHandler(async(req,res)=>{
 //     return createResponse(res,req.body);
 // }))
-userRouter.post('/submitportfolioform',authMiddleware,asyncHandler(async(req,res)=>{
-    // const {_id}=await UserInfo.create(req.body);
-    // const user=await User.findOneAndUpdate(
-    //     {_id:req.user._id},
-    //     {userInfo:_id}
-    // )
-    console.log("here submit by form reached")
-    console.log(req.body);
-    return createResponse(res, req.body);
+userRouter.post('/submitportfolioform',authMiddleware,upload.any(),asyncHandler(async(req,res)=>{
+    console.log("came at babckend submit portfolio by form")
+    // console.log(JSON.parse(req.body.portfolio))
+    const parsedObjectPortfolio=JSON.parse(req.body.portfolio);
+    if(parsedObjectPortfolio.hasOwnProperty("_id")){
+        let userInfo=parsedObjectPortfolio;
+        for(let file of req.files){
+            const resultURL=await uploadOnCloudinary(file.path);
+            console.log(file.fieldname,resultURL.url);
+            if(file.fieldname==="profileImage"){
+                userInfo.profileImage={
+                    imageURI:resultURL.url
+                }
+            }else{
+                const [_,sectionIndex,bulletIndex]=file.fieldname.split("_");
+                userInfo.sections[sectionIndex].bullets[bulletIndex].bulletDisplayImage={
+                    imageURI:resultURL.url
+                }
+            }
+        }
+        const newuserInfo=await UserInfo.findByIdAndUpdate({_id:parsedObjectPortfolio._id},userInfo,{new:true})
+        return createResponse(res, newuserInfo);
+    }
+    const userInfo=await UserInfo.create(parsedObjectPortfolio);
+    // console.log(userInfo.sections[0].bullets)
+    // console.log("req.file=\n",req.files)
+    for(let file of req.files){
+        const resultURL=await uploadOnCloudinary(file.path);
+        console.log(file.fieldname,resultURL.url);
+        if(file.fieldname==="profileImage"){
+            userInfo.profileImage={
+                imageURI:resultURL.url
+            }
+        }else{
+            const [_,sectionIndex,bulletIndex]=file.fieldname.split("_");
+            userInfo.sections[sectionIndex].bullets[bulletIndex].bulletDisplayImage={
+                imageURI:resultURL.url
+            }
+        }
+    }
+    userInfo.save();
+    const {_id}=userInfo;
+    const user=await User.findById(req.user._id);
+    user.userInfo.push(_id);
+    await user.save();
+    return createResponse(res, userInfo);
 }))
 // userRouter.get('/createportfolioresume',authMiddleware,asyncHandler(async(req,res)=>{
 //     return createResponse(res,req.body);
 // }))
 userRouter.post('/submitportfolioresume',authMiddleware,upload.single("resume"),asyncHandler(async(req,res)=>{
-    console.log("received call here at submitportfolioresume");
-    console.log(req.file)
+    // console.log("received call here at submitportfolioresume");
     const result=await runGemini(req.file);
     const parsedResult=JSON.parse(result);
     const resultURL=await uploadOnCloudinary(req.file.path);
-    console.log("resultURL",resultURL.secure_url); 
-    console.log("result",result);
     const {_id}=await UserInfo.create(parsedResult);
-    const user=await User.findOneAndUpdate(
-        {_id:req.user._id},
-        {userInfo:_id}
-    )
+    // console.log(_id);
+    const user=await User.findById(req.user._id);
+    // console.log(user)
+    user.userInfo.push(_id);
+    await user.save();
+    // console.log(user)
     return createResponse(res, parsedResult);
 }))
 

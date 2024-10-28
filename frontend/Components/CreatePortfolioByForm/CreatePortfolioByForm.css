@@ -54,3 +54,8 @@
         position: relative;
     }
 }
+
+.imgLabel>input{
+    display: none;
+    border:2px solid red;
+}

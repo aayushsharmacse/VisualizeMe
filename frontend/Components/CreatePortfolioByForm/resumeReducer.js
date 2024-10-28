@@ -2,6 +2,9 @@
 export default function resumeReducer(resume,action){
     console.log(action.type)
     switch(action.type){
+        case "updateResume":{
+          return {...action.userInfo,bulletImages:[]};
+        }
         case "addSection":{
             return ({...resume, sections:[...resume.sections,{
               sectionHeader:'',
@@ -17,26 +20,12 @@ export default function resumeReducer(resume,action){
             return {...resume,profileImage:action.etargetfile}
         }
         case "bulletimageinput":{
-          console.log(action)
-          return {...resume,
-            sections:resume.sections.map((section,sectionIndex)=>{
-              if(sectionIndex===action.maybe_sectionIndex){
-                return {...section,
-                  bullets:section.bullets.map((bullet,bulletIndex)=>{
-                    if(bulletIndex===action.maybe_bulletIndex){
-                      return {...bullet,bulletDisplayImage:action.etargetfile}
-                    }
-                    else{
-                      return bullet;
-                    }
-                  })
-                }
-              }
-              else{
-                return section;
-              }
-            })
-          };
+          return {
+            ...resume,
+            bulletImages:[...resume.bulletImages,
+            [`bullet_${action.maybe_sectionIndex}_${action.maybe_bulletIndex}`,action.etargetfile]
+            ]
+          }
         }
         case "sectiontextinput":{
           return {...resume,sections:resume.sections.map((section,index)=>{

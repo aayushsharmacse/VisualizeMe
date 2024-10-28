@@ -72,7 +72,22 @@ export const createPortfolioByResumeUser=createAsyncThunk("user/createPortfolioB
 
 export const createPortfolioByFormUser=createAsyncThunk("user/createPortfolioByFormUser",async(input,thunkAPI)=>{
     try{
+        console.log("going to api")
         const response=await axios.post("http://localhost:4000/user/submitportfolioform",input,{
+            headers:{
+                "Authorization":`Bearer ${thunkAPI.getState().user.accessToken}`
+            }
+        })
+        return response.data;
+    }
+    catch(e){
+        return thunkAPI.rejectWithValue(e.response.data);
+    }
+})
+
+export const deletePortfolioUser=createAsyncThunk("user/deletePortfolioUser",async(input,thunkAPI)=>{
+    try{
+        const response=await axios.delete(`http://localhost:4000/user/deleteportfolio/${input}`,{
             headers:{
                 "Authorization":`Bearer ${thunkAPI.getState().user.accessToken}`
             }

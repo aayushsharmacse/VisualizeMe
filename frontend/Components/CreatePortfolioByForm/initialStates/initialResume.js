@@ -4,6 +4,7 @@ const initialResume={
     profileImage: null,
     profileImageCaption: '',
     profileImageSubCaption: '',
-    sections:[]
+    sections:[],
+    bulletImages:[],
 }
 export default initialResume;

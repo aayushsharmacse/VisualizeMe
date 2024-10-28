@@ -18,6 +18,7 @@ const router=createBrowserRouter(
       <Route path='signin' element={<SigninOrSignup/>}/>
       <Route path='signup' element={<SigninOrSignup/>}/>
       <Route  path="user/:id/profile" element={<Profile/>} />
+      <Route  path="user/:id/edit/:portfolioid" element={<CreatePortfolioByForm/>} />
       <Route path='user/:id' element={<Dashboard/>}>
         <Route index element={<MainDashboard/>}/>
         <Route path='createportfolio' element={<CreatePortfolioLayout/>}>

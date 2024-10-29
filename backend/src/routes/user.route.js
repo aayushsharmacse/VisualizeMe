@@ -130,7 +130,7 @@ userRouter.get("/getuserportfolios",authMiddleware,asyncHandler(async (req,res)=
 userRouter.get("/getsingleuserportfolio/:_id",authMiddleware,asyncHandler(async (req,res)=>{
     // const user=await User.findOne({_id:req.user._id});
     // if(user && user.userInfo && user.userInfo.length!==0){
-    console.log("entered gets ingle portfolio user, search for id=",req.params._id)
+    console.log("entered gets single portfolio user, search for id=",req.params._id)
         const userInfo=await UserInfo.findById(req.params._id);
         return createResponse(res,{userInfo:userInfo});
     // }

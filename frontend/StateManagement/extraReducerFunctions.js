@@ -98,3 +98,18 @@ export const deletePortfolioUser=createAsyncThunk("user/deletePortfolioUser",asy
         return thunkAPI.rejectWithValue(e.response.data);
     }
 })
+
+export const getsingleportfolioView=createAsyncThunk("user/getsingleportfolioView",async(input,thunkAPI)=>{
+    try{
+        console.log("input==",input)
+        const response=await axios.get(`http://localhost:4000/user/getsingleuserportfolio/${input}`,{
+            headers:{
+                "Authorization":`Bearer ${thunkAPI.getState().user.accessToken}`
+            }
+        })
+        return response.data;
+    }
+    catch(e){
+        return thunkAPI.rejectWithValue(e.response.data);
+    }
+})

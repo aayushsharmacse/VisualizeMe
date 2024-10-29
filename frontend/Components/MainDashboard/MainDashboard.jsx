@@ -60,6 +60,9 @@ export default function MainDashboard(){
         func();
         console.log(data);
     },[])
+    const handlegoToPortfolio=(portfolio)=>{
+        navigate(`/view/${portfolio}`);
+    }
     if(isLoading){
         return (
             <div className="loaderDiv">
@@ -73,7 +76,7 @@ export default function MainDashboard(){
             data.map((portfolio,index)=>{
                 return (
                     <div key={index} className="portfolioDiv">
-                        <button className="goToPortfolio">
+                        <button className="goToPortfolio" onClick={()=>handlegoToPortfolio(portfolio)}>
                             <p>Portfolio {portfolio}</p>
                         </button>
                         <button className="edit" onClick={(e)=>handleEdit(portfolio)}>

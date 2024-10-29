@@ -5,7 +5,7 @@ import initialResume from "./initialStates/initialResume.js";
 import initialSection from "./initialStates/initialSection.js";
 import initalBullet from "./initialStates/initalBullet.js";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faCross, faExchange, faSquareXmark} from "@fortawesome/free-solid-svg-icons";
+import {faCross, faExchange, faSkullCrossbones, faSquareXmark} from "@fortawesome/free-solid-svg-icons";
 import {useDispatch,useSelector} from "react-redux";
 import { createPortfolioByFormUser } from "../../StateManagement/extraReducerFunctions.js";
 import loader from "../../Loader/loader.gif"
@@ -42,7 +42,7 @@ export default function CreatePortfolioByForm(){
     delete resumeCopy.bulletImages;
     let profileImage;
     const formData=new FormData();
-    if(typeof resumeCopy.profileImage!=="object"){
+    if(resumeCopy.profileImage instanceof File){
       profileImage=resumeCopy.profileImage;
       resumeCopy.profileImage="";
       formData.append("profileImage",profileImage);
@@ -78,6 +78,7 @@ export default function CreatePortfolioByForm(){
     if(e.target.name==="profileImage"){
       const file=e.target.files[0];
       if(file){
+        console.log("entered here to handleImgchange for profile")
         dispatch({type:"resumeimageinput",etargetfile:file})
       }
     }
@@ -112,6 +113,12 @@ export default function CreatePortfolioByForm(){
   const handleRemoveBullet=(bulletIndex,sectionIndex)=>{
     dispatch({type:"removeBullet",bulletIndex:bulletIndex,sectionIndex:sectionIndex})
   }
+  const handleEditRemoveProfileImg=()=>{
+    dispatch({type:"removeProfileImg"})
+  }
+  const handleEditRemoveBulletImg=(bulletIndex,index)=>{
+    dispatch({type:"removeBulletImg",bulletIndex:bulletIndex,sectionIndex:index})
+  }
   if(isLoading){
     return (
         <div className="loaderDiv">
@@ -140,10 +147,11 @@ export default function CreatePortfolioByForm(){
                     />
                     </label>
                 <br/>
-                {resume.profileImage && resume.profileImage && resume.profileImage.imageURI && resume.profileImage.imageURI!="" 
+                {resume.profileImage && resume.profileImage.imageURI && resume.profileImage.imageURI!="" 
                 ?
                 (
-                <label className="imgLabel">Change your Profile Image:
+                  <>
+                <label className="imgLabel">Change your Profile Image 
                   <FontAwesomeIcon icon={faExchange} color="green"/>
                     <input 
                     type="file" 
@@ -153,10 +161,13 @@ export default function CreatePortfolioByForm(){
                     accept="image/*"
                     />
                     </label>
+                    <label className="imgLabel" onClick={handleEditRemoveProfileImg}>Remove your Profile Image:
+                    <FontAwesomeIcon icon={faSkullCrossbones} color="red"/>
+                      </label>
+                  </>
                     ) 
                     :
                     <label>Enter your Profile Image:
-                  <FontAwesomeIcon icon={faSquareXmark} color="red"/>
                     <input 
                     type="file" 
                     name="profileImage"
@@ -189,7 +200,7 @@ export default function CreatePortfolioByForm(){
                         return (<div className="sectionDiv"  key={index} >
                             <button type="button" onClick={()=>handleRemoveSection(index)}>Remove Section -</button>
                         <label>Enter your sectionHeader:
-                        {console.log(section,"found")}
+                        {/* {console.log(section,"found")} */}
                         <input 
                             type="text"
                             name="sectionHeader" 
@@ -198,26 +209,32 @@ export default function CreatePortfolioByForm(){
                         />
                         </label>
                         <br/>
-                        {console.log(section.bullets)}
+                        {/* {console.log(section.bullets)} */}
                         {section.bullets?.map((bullet,bulletIndex)=>{
                             return(
                             <div className="bulletDiv" key={bulletIndex}>
                               <button type="button" className="crossIconForBulletsButton" onClick={(e)=>handleRemoveBullet(bulletIndex,index)}>
                               <FontAwesomeIcon icon={faSquareXmark} size="2x" style={{color: "#ff2424",}} />
                               </button>
-                              {resume.sections[index].bullets[bulletIndex].bulletImage && 
-                              resume.sections[index].bullets[bulletIndex].bulletImage.imageURI
+                              {bullet.bulletDisplayImage && 
+                              bullet.bulletDisplayImage.imageURI
                                ?
                                 (
+                                  <>                                  
                                 <label className="imgLabel">Change your bulletDisplayImage:
-                                <input 
-                                    type="file" 
+                                <FontAwesomeIcon icon={faExchange} color="green"/>
+                                <input
+                                    type="file"
                                     name={`bulletDisplayImage_${index}_${bulletIndex}`} 
                                     // value={bullet.bulletDisplayImage || ""} 
                                     onChange={(e)=>handleImgChange(e,bulletIndex,index)}
                                     accept="image/*"
                                 />
                                 </label>
+                                <label className="imgLabel" onClick={()=>handleEditRemoveBulletImg(bulletIndex,index)}>Remove your Bullet display Image:
+                                <FontAwesomeIcon icon={faSkullCrossbones} color="red"/>
+                                  </label>
+                                  </>
                                 )
                                 :
                                 (

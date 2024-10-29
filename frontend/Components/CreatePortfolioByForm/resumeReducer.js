@@ -27,6 +27,27 @@ export default function resumeReducer(resume,action){
             ]
           }
         }
+        case "removeProfileImg":{
+          return {...resume,profileImage:{...resume.profileImage,imageURI:""}}
+        }
+        case "removeBulletImg":{
+          return {...resume,sections:resume.sections.map((section,sectionIndex)=>{
+            if(sectionIndex===action.sectionIndex){
+              return {...section,bullets:section.bullets.map((bullet,bulletIndex)=>{
+                if(bulletIndex==action.bulletIndex){
+                  return {...bullet,bulletDisplayImage:{...bullet.bulletDisplayImage,imageURI:""}}
+                }
+                else{
+                  return bullet;
+                }
+              })
+              }
+            }
+            else{
+              return section;
+            }
+          })}
+        }
         case "sectiontextinput":{
           return {...resume,sections:resume.sections.map((section,index)=>{
             if(index===action.index){

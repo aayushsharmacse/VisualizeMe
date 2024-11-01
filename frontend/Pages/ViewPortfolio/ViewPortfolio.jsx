@@ -1,12 +1,13 @@
 import "./ViewPortfolio.css";
 import { useState } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation, Link } from "react-router-dom";
 import { useDispatch,useSelector } from "react-redux";
 import { useEffect } from "react";
 import axios from "axios";
 import loader from "../../Loader/loader.gif";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faIdBadge} from "@fortawesome/free-regular-svg-icons"
+import {faIdBadge} from "@fortawesome/free-regular-svg-icons";
+import {faArrowUpRightFromSquare} from "@fortawesome/free-solid-svg-icons";
 import {getsingleportfolioView} from "../../StateManagement/extraReducerFunctions.js";
 
 export default function ViewPortfolio(){
@@ -66,9 +67,9 @@ export default function ViewPortfolio(){
                     }
                     {/* <div className="DivInBtw"></div> */}
                     <div className="rightTopBottomSlide">
-                        <h1 className="rightTopBottomSlideText">{resume.userName}</h1>
-                        <h3 className="rightTopBottomSlideText">{resume.profileImageCaption}</h3>
-                        <p className="rightTopBottomSlideText">{resume.profileImageSubCaption}</p>
+                        {resume.userName && <h1 className="rightTopBottomSlideText">{resume.userName}</h1>}
+                        {resume.profileImageCaption && <h3 className="rightTopBottomSlideText">{resume.profileImageCaption}</h3>}
+                        {resume.profileImageSubCaption && <p className="rightTopBottomSlideText">{resume.profileImageSubCaption}</p>}
                     </div>
                 </div>
                 <div className="sections">
@@ -76,10 +77,9 @@ export default function ViewPortfolio(){
                     resume.sections.map((section,sectionIndex)=>{
                         return(
                             // <div className="DivAboveSection">
-
                             <div key={sectionIndex} className="section">
                                 <div className="sectionHeaderDiv">
-                                <h1 className="sectionHeader">{section.sectionHeader}</h1>
+                                {section.sectionHeader && <h1 className="sectionHeader">{section.sectionHeader}</h1>}
                                 </div>
                                 {/* <div className="DivAboveBullet"> */}
                                 <div className="bullets">
@@ -90,7 +90,7 @@ export default function ViewPortfolio(){
                                             // bullet.bulletDisplayImage && bullet.bulletDisplayImage.imageURI 
                                             
                                             (
-                                            <div key={bulletIndex} className="topprofile topprofileCSSreplacedbullt">
+                                            <div key={bulletIndex} className="topprofileCSSreplacedbullt">
                                             {bullet.bulletDisplayImage && bullet.bulletDisplayImage.imageURI &&
                                             <div className="leftTopTopSlide">
                                             <img src={bullet.bulletDisplayImage.imageURI} className="resumeProfileImageImageURI" />
@@ -98,8 +98,15 @@ export default function ViewPortfolio(){
                                             }
                                             {/* <div className="DivInBtw"></div> */}
                                             <div className="rightTopBottomSlide">
-                                                <h3 className="rightTopBottomSlideText bulletHeader">{bullet.bulletHeader}</h3>
-                                                <p className="rightTopBottomSlideText">{bullet.bulletText}</p>
+                                                {(bullet.bulletHeader && bullet.bulletHeaderURI && bullet.bulletHeaderURI!=="")
+                                                ?
+                                                <Link to={bullet.bulletHeaderURI} target="_blank" rel="noopener noreferrer">
+                                                <h3 className="rightTopBottomSlideText bulletHeader">{bullet.bulletHeader}<FontAwesomeIcon icon={faArrowUpRightFromSquare} /></h3>
+                                                </Link>
+                                                :
+                                                (bullet.bulletHeader && <h3 className="rightTopBottomSlideText bulletHeader">{bullet.bulletHeader}</h3>)
+                                                }
+                                                {bullet.bulletText && <p className="rightTopBottomSlideText">{bullet.bulletText}</p>}
                                             </div>
                                         </div>
                                             )

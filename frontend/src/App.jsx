@@ -14,6 +14,8 @@ import View from "../Pages/View/View.jsx";
 import ViewPortfolio from "../Pages/ViewPortfolio/ViewPortfolio.jsx";
 const router=createBrowserRouter(
   createRoutesFromElements(
+    <>
+      <Route path='view/:portfolio' element={<ViewPortfolio/>}/>
     <Route path='/' element={<NavLayout/>}>
       <Route index element={<Home/>}/>
       <Route path='about' element={<About/>}/>
@@ -29,13 +31,13 @@ const router=createBrowserRouter(
         </Route>
       </Route>
       <Route path='view' element={<View/>}/>
-      <Route path='view/:portfolio' element={<ViewPortfolio/>}/>
       {/* <Route path='help' element={<HelpLayout/>}>
         <Route path='faq' element={<FAQ/>}/>
         <Route path='contact' element={<ContactForm/>}/>
       </Route> */}
       <Route path='*' element={<Error/>} />
     </Route>
+    </>
   )
 )
 

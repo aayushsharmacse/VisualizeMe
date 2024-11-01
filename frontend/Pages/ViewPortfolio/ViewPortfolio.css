@@ -65,13 +65,13 @@
     /* box-shadow: 0px 0px 20px var(--secondary); */
 /* } */
 .section>div{
-    margin: 1em;
+    margin: 1em 0em;
 }
 .section>div>div{
-    margin: 1em;
+    margin: 1em 0em;
 }
 .section>div>div>div{
-    margin: 3em;
+    margin: 3em 0em;
 }
 
 .bulletHeader{
@@ -140,7 +140,21 @@
 @media screen and (max-width:900px) {
     .topProfile>div{
         padding: 1em;
-    }   
+    }
+    .contactMe>div{
+        padding: 1em;
+    }
+    .contactMeForm>form>input,.contactMeForm>form>div,.contactMeForm>form>textarea,.contactMeForm>form>button{
+        margin: 1em 0em;
+    }
+}
+@media screen and (max-width:700px) {
+    .contactMe{
+        flex-direction: column;
+    }
+    .contactMeForm>form{
+        width: 100%;
+    }
 }
 
 @media screen and (max-width:480px) {
@@ -149,5 +163,5 @@
     }
     .resumeProfileImageImageURI{
         width: 100%;
-    }   
+    }
 }

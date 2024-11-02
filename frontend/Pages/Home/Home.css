@@ -1,0 +1,49 @@
+
+.section1Home{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    height: calc(100vh - 50px);
+    
+}
+#img1{
+    height: calc(100vh - 50px);
+    border-radius: 50%;
+}
+.headMainTextDiv h1{
+    margin-top: 2em;
+}
+.section2Home{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    text-align: center;
+    height: calc(100vh - 50px);
+    /* background-image: ; */
+}
+
+.personRaysIcon{
+    display: inline;
+    width: 80%;
+    margin: auto;
+    height: 100px;
+}
+
+.section3Home{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    text-align: center;
+    height: calc(100vh - 50px);
+}
+.section3Home button{
+    min-width: 100px;
+    width: 20%;
+    margin: auto;
+}
+
+.section3Home a{
+    text-decoration: none;
+    color: var(--text);
+}

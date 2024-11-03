@@ -27,7 +27,7 @@ export default function ViewPortfolio(){
         if(contactDetails.name && contactDetails.email && contactDetails.message){
             console.log("going to call sendmail")
             try{
-            await axios.post(`http://localhost:4000/user/sendmail`,{...contactDetails,portfolio})
+            await axios.post(`http://localhost:4000/mail/sendmail`,{...contactDetails,portfolio})
             }
             catch(e){
                 alert(e);

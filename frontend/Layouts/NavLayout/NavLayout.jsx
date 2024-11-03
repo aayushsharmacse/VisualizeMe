@@ -1,7 +1,7 @@
 import { Outlet } from "react-router-dom";
-import Navbar from "../Components/Navbar/Navbar.jsx"
+import Navbar from "../../Components/Navbar/Navbar.jsx"
 import "./NavLayout.css"
-import loader from "../Loader/loader.gif"
+import loader from "../../Loader/loader.gif"
 import { useSelector } from "react-redux";
 export default function NavLayout(){
     const {isLoading}=useSelector((state)=>state.user);

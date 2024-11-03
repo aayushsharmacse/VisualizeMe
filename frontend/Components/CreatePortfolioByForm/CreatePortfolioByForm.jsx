@@ -16,17 +16,13 @@ export default function CreatePortfolioByForm(){
   const {pathname}=useLocation();
   const reduxDispatch=useDispatch();
   const {isLoading,_id,accessToken}=useSelector((state)=>state.user);
+  const [a,b,c,isEdit,portfolio]=pathname.split("/")
   const navigate=useNavigate();
     useEffect(()=>{
       const func=async()=>{
-        const [a,b,c,isEdit,portfolio]=pathname.split("/")
         try{
         if(isEdit){
-            const {data:{result:{userInfo}}}=await axios.get(`http://localhost:4000/user/getsingleuserportfolio/${portfolio}`,{
-              headers:{
-                  "Authorization":`Bearer ${accessToken}`
-              }
-          })
+            const {data:{result:{userInfo}}}=await axios.get(`http://localhost:4000/view/getsingleuserportfolio/${portfolio}`)
             console.log(userInfo);
             dispatch({type:"updateResume",userInfo:userInfo})
           }
@@ -65,7 +61,12 @@ export default function CreatePortfolioByForm(){
         alert(data.result.message);
       }
       else{
-        alert("Portfolio created successfully");
+        if(isEdit){
+          alert("Portfolio edited successfully");
+        }
+        else{
+          alert("Portfolio created successfully");
+        }
         console.log("now starting to navigate")
         navigate(`/user/${_id}`);
       }

@@ -1,6 +1,6 @@
 import {createBrowserRouter,createRoutesFromElements,Route,RouterProvider} from 'react-router-dom'
 import './App.css';
-import NavLayout from "../Layouts/NavLayout.jsx"
+import NavLayout from "../Layouts/NavLayout/NavLayout.jsx"
 import HelpLayout from '../Layouts/Help/HelpLayout.jsx';
 import HelpOptions from "../Components/HelpOptions/HelpOptions.jsx"
 import About from "../Pages/About/About.jsx"

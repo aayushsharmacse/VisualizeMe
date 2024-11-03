@@ -12,7 +12,7 @@ export default function ContactForm(){
         console.log(mail);
         if(mail.contact.trim()!="" && mail.message.trim()!="" && mail.name.trim()!=""){
             try{
-            await axios.post(`http://localhost:4000/user/sendmail`,mail)
+            await axios.post(`http://localhost:4000/mail/sendmail`,mail)
             }
             catch(e){
                 alert(e);

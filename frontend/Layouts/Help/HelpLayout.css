@@ -1,0 +1,14 @@
+
+.OptionsToHelp{
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    width: 400px;
+}
+.OptionsToHelp button{
+    flex: 50%;
+}
+.OptionsToHelp a{
+    text-decoration: none;
+    color: var(--text);
+}

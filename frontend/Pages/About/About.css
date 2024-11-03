@@ -1,0 +1,30 @@
+.completeAboutDiv{
+    margin:2em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+/* below is to be changed */
+.completeAboutDiv img{
+    width: 100%;
+    max-width: 500px;
+}
+
+.completeAboutDiv>p{
+    margin: 1em;
+}
+/* above is to be changed */
+.completeAboutDiv>div:first-child>img{
+    width: 100%;
+    height: 20em;
+}
+.completeAboutDiv>div{
+    margin: 1em;
+}
+/* .docs{
+    margin: 2em;    
+}
+.docs img{
+    max-width: 500px;
+
+} */

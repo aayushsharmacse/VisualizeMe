@@ -11,7 +11,7 @@ import {faArrowUpRightFromSquare} from "@fortawesome/free-solid-svg-icons";
 import {getsingleportfolioView} from "../../StateManagement/extraReducerFunctions.js";
 
 export default function ViewPortfolio(){
-    const {isLoading,_id}=useSelector((state)=>state.user)
+    const {isLoading,_id,isLoggedIn}=useSelector((state)=>state.user)
     const navigate=useNavigate();
     const {pathname}=useLocation();
     const portfolio=pathname.split("/")[2];
@@ -21,10 +21,17 @@ export default function ViewPortfolio(){
     const handleChange=(e)=>{
         setContactDetails({...contactDetails,[e.target.name]:e.target.value});
     }
-    const handleSubmit=(e)=>{
+    const handleSubmit=async(e)=>{
+        e.preventDefault();
         console.log(contactDetails);
         if(contactDetails.name && contactDetails.email && contactDetails.message){
-            console.log(contactDetails);
+            console.log("going to call sendmail")
+            try{
+            await axios.post(`http://localhost:4000/user/sendmail`,{...contactDetails,portfolio})
+            }
+            catch(e){
+                alert(e);
+            }
         }
         else{
             alert("Please fill all the fields");
@@ -39,13 +46,17 @@ export default function ViewPortfolio(){
                 }
                 else{
                     alert(data.result.message)
-                    navigate(`/user/${_id}`);
+                    if(isLoggedIn){
+                        navigate(`/user/${_id}`);
+                    }
                 }
             }
             catch(e){
                 console.log(e);
                 alert("Some error occured. Please contact support if the error persists.")
-                navigate(`/user/${_id}`);
+                if(isLoggedIn){
+                    navigate(`/user/${_id}`);
+                }
             }
         }
         func();

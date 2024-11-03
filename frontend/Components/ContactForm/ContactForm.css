@@ -1,0 +1,34 @@
+.myForm{
+    display: flex;
+    flex-direction: column;
+    /* border: 2px solid red; */
+    width: 100%;
+    max-width: 600px;
+    margin: auto;
+    margin-top: 2em;
+}
+.inputField{
+    display: flex;
+    flex-direction: column;
+    margin: 1em;
+    /* border: 2px solid green; */
+    max-width: 600px;
+}
+.input{
+    width: 100%;
+}
+.myForm input,.myForm textarea{
+    width: 100%;
+    max-width: 600px;
+    margin-top:0.5em;
+    margin-bottom: 0.5em;
+    height: 2em;
+}
+.myForm textarea{
+    resize: vertical;
+    height: 3em;
+}
+.buttonDiv{
+    display: flex;
+    justify-content: center;
+}

@@ -9,6 +9,7 @@ import upload from "../middlewares/multer.middleware.js"
 import runGemini from "../utils/Gemini.util.js";
 import uploadOnCloudinary from "../utils/cloudinary.util.js";
 import "mongoose";
+import sendMyMail from "../utils/mailing.util.js";
 const userRouter=express.Router()
 
 userRouter.post("/signup",asyncHandler(async(req,res,next)=>{
@@ -127,7 +128,7 @@ userRouter.get("/getuserportfolios",authMiddleware,asyncHandler(async (req,res)=
     }
 }));
 
-userRouter.get("/getsingleuserportfolio/:_id",authMiddleware,asyncHandler(async (req,res)=>{
+userRouter.get("/getsingleuserportfolio/:_id",asyncHandler(async (req,res)=>{
     // const user=await User.findOne({_id:req.user._id});
     // if(user && user.userInfo && user.userInfo.length!==0){
     console.log("entered gets single portfolio user, search for id=",req.params._id)
@@ -225,6 +226,24 @@ userRouter.post('/submitportfolioresume',authMiddleware,upload.single("resume"),
     await user.save();
     // console.log(user)
     return createResponse(res, parsedResult);
+}))
+
+userRouter.post('/sendmail',asyncHandler(async(req,res)=>{
+    const mail=req.body;
+    // if mail has name,contact,message than it came from /help/contact 
+    //else if 
+    //the mail has name,email,message,portfolio then it is from viewportfolio
+    // console.log("entered sendmail with mail",mail);
+    if(mail.portfolio){
+        const {email}=await UserInfo.findById(mail.portfolio);
+        if(!email){
+            return next(createError(400,"Email not found","Err from backend in sendmail api controller"))
+        }
+        mail.to=email;
+    }
+    await sendMyMail(mail);
+    return createResponse(res,{success:true});
+
 }))
 
 export default userRouter;

@@ -1,7 +1,9 @@
 import {createBrowserRouter,createRoutesFromElements,Route,RouterProvider} from 'react-router-dom'
 import './App.css';
 import NavLayout from "../Layouts/NavLayout.jsx"
-import About from "../Pages/About/about.jsx"
+import HelpLayout from '../Layouts/Help/HelpLayout.jsx';
+import HelpOptions from "../Components/HelpOptions/HelpOptions.jsx"
+import About from "../Pages/About/About.jsx"
 import SigninOrSignup from "../Pages/SigninOrSignup/SigninOrSignup.jsx"
 import Home from "../Pages/Home/Home.jsx"
 import Dashboard from "../Pages/Dashboard/Dashboard.jsx"
@@ -12,6 +14,9 @@ import CreatePortfolioByForm from '../Components/CreatePortfolioByForm/CreatePor
 import CreatePortfolioByResume from "../Components/CreatePortfolioByResume/CreatePortfolioByResume.jsx";
 import View from "../Pages/View/View.jsx";
 import ViewPortfolio from "../Pages/ViewPortfolio/ViewPortfolio.jsx";
+import Faq from "../Components/FAQ/Faq.jsx";
+import ContactForm from "../Components/ContactForm/ContactForm.jsx";
+
 const router=createBrowserRouter(
   createRoutesFromElements(
     <>
@@ -31,10 +36,10 @@ const router=createBrowserRouter(
         </Route>
       </Route>
       <Route path='view' element={<View/>}/>
-      {/* <Route path='help' element={<HelpLayout/>}>
-        <Route path='faq' element={<FAQ/>}/>
+      <Route path='help' element={<HelpLayout/>}>
+        <Route path='faq' element={<Faq/>}/>
         <Route path='contact' element={<ContactForm/>}/>
-      </Route> */}
+      </Route>
       <Route path='*' element={<Error/>} />
     </Route>
     </>

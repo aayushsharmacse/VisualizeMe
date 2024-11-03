@@ -1,0 +1,22 @@
+.faq{
+    margin: 2em;
+    border: 2px solid var(--secondary);
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px var(--secondary);
+    padding-left: 1em;
+    padding-right: 1em;
+}
+.question{
+    display: flex;
+    justify-content: space-between;
+}
+.question>div{
+    display: flex;
+    align-items: center;
+}
+.question h4{
+    height: 2em;
+}
+.hidden{
+    display: none;
+}

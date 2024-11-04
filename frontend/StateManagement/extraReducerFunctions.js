@@ -99,6 +99,16 @@ export const deletePortfolioUser=createAsyncThunk("user/deletePortfolioUser",asy
     }
 })
 
+export const getPortfoliosForView=createAsyncThunk("user/getPortfoliosForView",async(input,thunkAPI)=>{
+    try{
+        const response=await axios.get(`http://localhost:4000/view/getportfoliosforview`)
+        return response.data;
+    }
+    catch(e){
+        return thunkAPI.rejectWithValue(e.response.data);
+    }
+})
+
 export const getsingleportfolioView=createAsyncThunk("user/getsingleportfolioView",async(input,thunkAPI)=>{
     try{
         console.log("input==",input)

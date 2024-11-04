@@ -8,4 +8,10 @@ const getSinglePortfolio=asyncHandler(async (req,res)=>{
     return createResponse(res,{userInfo:userInfo});
 })
 
-export {getSinglePortfolio};
+const getPortfoliosForView=asyncHandler(async(req,res)=>{
+    console.log("here")
+    const portfolios=await UserInfo.find();
+    return createResponse(res,{data:portfolios});
+})
+
+export {getSinglePortfolio,getPortfoliosForView};

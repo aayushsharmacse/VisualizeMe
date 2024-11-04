@@ -20,3 +20,15 @@
 .hidden{
     display: none;
 }
+
+/* for 425 */
+@media screen and (max-width: 480px) {
+    .faq{
+        margin: 1em 0em;
+        padding-left: 0.5em;
+        padding-right: 0.5em;        
+    }
+    .question h4{
+        height: 3.5em;
+    }   
+}

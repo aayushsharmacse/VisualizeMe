@@ -17,6 +17,7 @@
 }
 .completeViewPortfolioDiv p{
     color:rgb(174, 176, 184);
+    /* color: white; */
 }
 .completeViewPortfolioDiv{
     margin:2em;
@@ -144,13 +145,23 @@
     .contactMe>div{
         padding: 1em;
     }
-    .contactMeForm>form>input,.contactMeForm>form>div,.contactMeForm>form>textarea,.contactMeForm>form>button{
+    .contactMeForm>form>input,.contactMeForm>form>div,.contactMeForm>form>textarea{
         margin: 1em 0em;
+    }
+    .contactMeForm>form>button{
+        margin: auto;
     }
 }
 @media screen and (max-width:700px) {
+    .completeViewPortfolioDiv h1,.completeViewPortfolioDiv h2{
+        font-size: 2em;
+    }
     .contactMe{
         flex-direction: column;
+    }
+    .contactMe{
+        margin: 1em;
+        width: 90%;
     }
     .contactMeForm>form{
         width: 100%;

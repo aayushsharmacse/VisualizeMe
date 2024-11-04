@@ -1,0 +1,104 @@
+
+.filters{
+    width: 100%;
+}
+.searchfilter{
+    /* border: 2px solid blue; */
+    width: 30em;
+    max-width: 100%;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+}
+.filters input{
+    /* border: 2px solid yellow; */
+    padding: 0.5em 1em;
+    border-radius: 0.2em;
+    background-color: rgb(63, 60, 60);
+    color: aliceblue;
+    margin: 1em;
+    width: 80%;
+}
+.searchIconDiv{
+    /* border: 2px solid green; */
+    margin: auto;
+}
+/* .ic{ */
+    /* border: 2px solid red; */
+/* } */
+
+
+.portfoliosDivAtView{
+    /* border: 2px solid green; */
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    
+}
+.portfolioDivAtView{
+    /* border: 2px solid red; */
+    box-shadow: 0px 0px 0.5em var(--primary);
+    border-radius: 0.5em;
+    height: 12em;
+    width: 10em;
+    margin: 1em;
+    padding: 0.2em;
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    align-items: center;
+    justify-content: center;
+}
+.portfolioDivAtView:hover{
+    background-color: var(--secondary);
+    opacity: 0.8;
+}
+/* .portfolioDivAtView>div:first-child>img{
+    border: 2px solid blue;
+    height: 7em;
+    width: 80%;
+    margin: auto;
+} */
+.portfolioDivAtView img{
+    box-shadow: 0px 0px 0.5em var(--secondary);
+    border-radius: 0.5em;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    height: 7em;
+    width: 80%;
+}
+.PortfolioDetailsSummaryDiv{
+    /* border: 2px solid yellow; */
+    border-radius: 0.5em;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    box-shadow: 0px 0px 0.5em var(--secondary);
+    width: 80%;
+    height: 3em;
+}
+.PortfolioDetailsSummaryDiv p{
+    font-size: small;
+    /* width: 8px; */
+    /* text-overflow: ellipsis; */
+    white-space: nowrap; 
+    width: 100%; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* <= 375  handle */
+@media screen and (max-width:400px) {
+    .portfolioDivAtView{
+        margin: 0.5em;
+        width: 8em;
+        height: 10em;
+        /* padding: 0.1em; */
+    } 
+    .portfolioDivAtView img{
+        height: 6em;
+    }  
+    .PortfolioDetailsSummaryDiv{
+        height: 2em;
+    }
+}

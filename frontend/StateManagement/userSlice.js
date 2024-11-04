@@ -1,7 +1,7 @@
 import {createSlice, createAsyncThunk} from "@reduxjs/toolkit";
 import {signupUser,signinUser,getportfoliosUser,
     signoutUser,createPortfolioByResumeUser,createPortfolioByFormUser,
-    deletePortfolioUser,getsingleportfolioView } from "./extraReducerFunctions.js"
+    deletePortfolioUser,getsingleportfolioView,getPortfoliosForView } from "./extraReducerFunctions.js"
 
 const initialState={
     userName:"",
@@ -110,6 +110,15 @@ const userSlice=createSlice({
                 state.isLoading=false;
             })
             .addCase(getsingleportfolioView.rejected,(state)=>{
+                state.isLoading=false;
+            })
+            .addCase(getPortfoliosForView.pending,(state)=>{
+                state.isLoading=true;
+            })
+            .addCase(getPortfoliosForView.fulfilled,(state,action)=>{
+                state.isLoading=false;
+            })
+            .addCase(getPortfoliosForView.rejected,(state)=>{
                 state.isLoading=false;
             })
     },

@@ -179,7 +179,7 @@ export default function CreatePortfolioByForm(){
                     </label>
                     }
                     <br/>
-                    <label>Enter your Profile Image Caption:
+                    <label>Enter your title:
                     <input 
                     type="text" 
                     name="profileImageCaption" 
@@ -188,7 +188,7 @@ export default function CreatePortfolioByForm(){
                     />
                     </label>
                     <br/>
-                    <label>Enter your Profile Image Sub Caption:
+                    <label>Enter your title Sub Caption:
                     <input 
                     type="text" 
                     name="profileImageSubCaption" 

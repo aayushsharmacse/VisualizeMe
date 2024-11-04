@@ -11,7 +11,6 @@ export default function Home(){
     const {_id}=useSelector((state)=>state.user);
     return(
         <div className="completeHome"
-        
         style={{ 
             height:"100%",
             backgroundImage: "url("+img2+")" ,
@@ -19,9 +18,7 @@ export default function Home(){
             backgroundSize: "100%"
         }}
         >
-            <div className="section1Home"
-                            
-            >
+            <div className="section1Home">
                 <div className="headMainTextDiv" >
                     <h4>The world is full of lies but there lies one single truth.</h4>
                     <h1><i>Visuals Speak<br/>Louder Than Words!</i></h1>
@@ -49,6 +46,7 @@ export default function Home(){
                 :
                 <>
                 <h1>Sign up now!</h1>
+                <br/>
                 <button><Link to={`/signup`}>Sign up</Link></button>
                 </>
                 }

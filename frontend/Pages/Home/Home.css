@@ -4,8 +4,7 @@
     flex-direction: row;
     justify-content: space-evenly;
     align-items: center;
-    height: calc(100vh - 50px);
-    
+    min-height: calc(100vh - 50px);    
 }
 #img1{
     height: calc(100vh - 50px);
@@ -19,7 +18,7 @@
     flex-direction: column;
     justify-content: space-evenly;
     text-align: center;
-    height: calc(100vh - 50px);
+    min-height: calc(100vh - 50px);
     /* background-image: ; */
 }
 
@@ -46,4 +45,14 @@
 .section3Home a{
     text-decoration: none;
     color: var(--text);
+}
+
+@media screen and (max-width:480px) {
+ .section1Home{
+    flex-direction: column;
+ }
+ #img1{
+    height: calc(100vh - 110px);
+    border-radius: 50%;
+}
 }

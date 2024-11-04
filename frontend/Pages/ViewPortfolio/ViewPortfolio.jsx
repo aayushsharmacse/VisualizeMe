@@ -9,7 +9,7 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faIdBadge} from "@fortawesome/free-regular-svg-icons";
 import {faArrowUpRightFromSquare} from "@fortawesome/free-solid-svg-icons";
 import {getsingleportfolioView} from "../../StateManagement/extraReducerFunctions.js";
-
+import bg from "../../Logo/img2.jfif";
 export default function ViewPortfolio(){
     const {isLoading,_id,isLoggedIn}=useSelector((state)=>state.user)
     const navigate=useNavigate();
@@ -69,7 +69,14 @@ export default function ViewPortfolio(){
         );
     }  
     return( resume &&
-            <div className="completeViewPortfolioDiv">
+            <div className="completeViewPortfolioDiv"
+            // style={{ 
+            //     height:"100%",
+            //     backgroundImage: "url("+bg+")" ,
+            //     backgroundAttachment:"fixed",
+            //     backgroundSize: "100%",
+            // }}
+            >
                 <div className="topProfile">
                     {resume.profileImage && resume.profileImage.imageURI &&
                     <div className="leftTopTopSlide">

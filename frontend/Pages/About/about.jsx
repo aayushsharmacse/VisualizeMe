@@ -39,9 +39,9 @@ export default function About(){
                 <p>Step 4 Mode 2 - Quick visualize with the power of AI</p>
                 <img src={img2}/>
                 <p>Go back to your dashboard to analyse or to edit</p>
-                <h1>Have any ideas? or want to contribe? or to contact dev? 
+                <h2>Have any ideas? or want to contribe? or to contact dev? 
                     email dev right now!!!
-                     aceksaayush@gmail.com</h1>
+                     aceksaayush@gmail.com</h2>
             {/* </div> */}
         </div>
         </>

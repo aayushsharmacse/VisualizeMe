@@ -16,7 +16,6 @@ export default function View(){
         const func=async()=>{
             try{
                 const {payload:response}=await dispatch(getPortfoliosForView());
-                console.log(response);
                 if(response.success){
                     setData(response.result.data);
                 }
@@ -33,6 +32,9 @@ export default function View(){
     const handleClick=(_id)=>{
         navigate(`/view/${_id}`);
     }
+    const handleClickForSearch=()=>{
+        alert("The functionality is not been developed yet")
+    }
     if(isLoading){
         return (
             <div className="loaderDiv">
@@ -45,7 +47,7 @@ export default function View(){
                <div className="filters">
                     <div className="searchfilter">
                         <input type="text" placeholder="Search..."/>
-                        <div className="searchIconDiv">
+                        <div className="searchIconDiv" onClick={handleClickForSearch}>
                             <FontAwesomeIcon icon={faMagnifyingGlass} className="ic"/>
                         </div>
                     </div>

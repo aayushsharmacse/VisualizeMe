@@ -14,11 +14,8 @@ export default function MainDashboard(){
     const [data,setData]=useState([]);
     const {accessToken}=useSelector((state)=>state.user);
     const handleKill=async(portfolio)=>{
-        console.log("entered to kill")
         try{
-            console.log("portfolio",portfolio)
             const {payload:data}=await dispatch(deletePortfolioUser(portfolio));
-            console.log("deleted",data)
             if(data.success==false){
                 alert(data.result.message);
             }
@@ -39,7 +36,6 @@ export default function MainDashboard(){
     useEffect(()=>{
         const func=async()=>{
             try{
-                console.log("call to get portfolios")
             const {payload:data}= await dispatch(getportfoliosUser());
             if(data.success===false){
                 alert(data.result.message);
@@ -49,7 +45,6 @@ export default function MainDashboard(){
                 navigate(`/user/${_id}/createportfolio`)
             }
             else{
-                console.log("found",data.result.userInfo)
                 setData(data.result.userInfo);
             }
             }
@@ -58,7 +53,6 @@ export default function MainDashboard(){
             }
         }
         func();
-        console.log(data);
     },[])
     const handlegoToPortfolio=(portfolio)=>{
         navigate(`/view/${portfolio}`);
@@ -82,7 +76,6 @@ export default function MainDashboard(){
                         <button className="edit" onClick={(e)=>handleEdit(portfolio)}>
                             <p><FontAwesomeIcon icon={faEdit} size="1.5x"/></p>
                         </button>
-                        {console.log(index)}
                         <button className="kill" onClick={(e)=>handleKill(portfolio)}>
                             <p>Delete</p> <FontAwesomeIcon icon={faSkullCrossbones} size="1.5x" />    
                         </button>

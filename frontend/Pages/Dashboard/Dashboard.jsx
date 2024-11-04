@@ -6,7 +6,6 @@ import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 export default function Dashboard(){
-    console.log("entered dashboard");
     const navigate=useNavigate();
     const {_id}=useSelector((state)=>state.user);
     const handleClick=(e)=>{

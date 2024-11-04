@@ -23,11 +23,9 @@ export default function ViewPortfolio(){
     }
     const handleSubmit=async(e)=>{
         e.preventDefault();
-        console.log(contactDetails);
         if(contactDetails.name && contactDetails.email && contactDetails.message){
-            console.log("going to call sendmail")
             try{
-            await axios.post(`http://localhost:4000/mail/sendmail`,{...contactDetails,portfolio})
+            await axios.post(`${import.meta.env.VITE_SERVER_URI}/mail/sendmail`,{...contactDetails,portfolio})
             }
             catch(e){
                 alert(e);

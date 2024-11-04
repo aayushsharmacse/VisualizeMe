@@ -5,7 +5,6 @@ import { Outlet, useNavigate } from "react-router-dom";
 // import { useState } from "react";
 export default function CreatePortfolioLayout(){
     // const [visualizeOption,setVisualizeOption]=useState(null);
-    console.log("entered hrer")
     const navigate=useNavigate();
     return(
         <div className="completeCreatePortfolioLayoutDiv">

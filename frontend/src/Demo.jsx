@@ -20,7 +20,6 @@ const initalBullet={
 };
 
 function resumeReducer(resume,action){
-    console.log(action.type)
     switch(action.type){
         case "addSection":{
             return ({...resume, sections:[...resume.sections,{
@@ -175,7 +174,6 @@ function Demo() {
             return (<div key={index} style={{border:"2px solid blue"}}>
                 <button type="button" style={{color:"blue"}} onClick={()=>handleRemoveSection(index)}>Remove Section -</button>
              <label>Enter your sectionHeader:
-              {console.log(section,"found")}
                <input 
                  type="text"
                  name="sectionHeader" 
@@ -184,7 +182,6 @@ function Demo() {
                />
                </label>
                <br/>
-               {console.log(section.bullets)}
                {section.bullets?.map((bullet,bulletIndex)=>{
                 return(
                   <div key={bulletIndex} style={{border:"2px solid green"}}>

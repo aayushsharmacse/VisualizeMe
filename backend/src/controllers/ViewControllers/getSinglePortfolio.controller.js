@@ -9,7 +9,7 @@ const getSinglePortfolio=asyncHandler(async (req,res)=>{
 })
 
 const getPortfoliosForView=asyncHandler(async(req,res)=>{
-    console.log("here")
+    // console.log("here")
     const portfolios=await UserInfo.find();
     return createResponse(res,{data:portfolios});
 })

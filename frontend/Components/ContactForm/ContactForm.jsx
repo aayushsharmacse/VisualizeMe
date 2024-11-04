@@ -9,10 +9,9 @@ export default function ContactForm(){
         setMail({...mail,[e.target.name]:e.target.value});
     }
     const handleSubmit=async()=>{
-        console.log(mail);
         if(mail.contact.trim()!="" && mail.message.trim()!="" && mail.name.trim()!=""){
             try{
-            await axios.post(`http://localhost:4000/mail/sendmail`,mail)
+            await axios.post(`${import.meta.env.VITE_SERVER_URI}/mail/sendmail`,mail)
             }
             catch(e){
                 alert(e);

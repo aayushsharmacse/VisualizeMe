@@ -1,6 +1,6 @@
 
 export default function resumeReducer(resume,action){
-    console.log(action.type)
+    // console.log(action.type)
     switch(action.type){
         case "updateResume":{
           return {...action.userInfo,bulletImages:[]};
@@ -84,25 +84,6 @@ export default function resumeReducer(resume,action){
         })
         }
         case "removeBullet":{
-          console.log("request received to remove a bullet")
-          console.log("current resume=",resume)
-          console.log("Action=",action)
-          console.log("will be after it resume",{
-            ...resume,
-            sections:resume.sections.map((section,sectionIndex)=>{
-              if(sectionIndex===action.sectionIndex){
-                return {
-                  ...section,
-                  bullets: section.bullets.filter((bullet,bulletIndex)=>{
-                    return bulletIndex!==action.bulletIndex;
-                  })
-                }
-              }
-              else{
-                return section;
-              }
-            })
-          })
           return ({
             ...resume,
             sections:resume.sections.map((section,sectionIndex)=>{

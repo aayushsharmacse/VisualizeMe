@@ -93,14 +93,14 @@ const GetAllUserPortfolios=asyncHandler(async (req,res)=>{
 const DeletePortfolioById=asyncHandler(async (req,res)=>{
     const user=await User.findOne({_id:req.user._id});
     if(user && user.userInfo){
-        console.log("user.userInfo=",user.userInfo)
+        // console.log("user.userInfo=",user.userInfo)
             user.userInfo=user.userInfo.filter((portfolioId)=>{
                 //check here string vs objectId case
                 //console.log("portfolioId.equals(req.params._id)",portfolioId.equals(req.params._id))
                 return !portfolioId.equals(req.params._id)
             });
             await user.save();
-        console.log("user.userInfo=",user.userInfo)
+        // console.log("user.userInfo=",user.userInfo)
         await UserInfo.findByIdAndDelete(req.params._id);
         return createResponse(res,{userInfo:user.userInfo});
     }
@@ -115,7 +115,7 @@ const SubmitPortfolioForm=asyncHandler(async(req,res)=>{
         let userInfo=parsedObjectPortfolio;
         for(let file of req.files){
             const resultURL=await uploadOnCloudinary(file.path);
-            console.log(file.fieldname,resultURL.url);
+            // console.log(file.fieldname,resultURL.url);
             if(file.fieldname==="profileImage"){
                 userInfo.profileImage={
                     imageURI:resultURL.url
@@ -133,7 +133,7 @@ const SubmitPortfolioForm=asyncHandler(async(req,res)=>{
     const userInfo=await UserInfo.create(parsedObjectPortfolio);
     for(let file of req.files){
         const resultURL=await uploadOnCloudinary(file.path);
-        console.log(file.fieldname,resultURL.url);
+        // console.log(file.fieldname,resultURL.url);
         if(file.fieldname==="profileImage"){
             userInfo.profileImage={
                 imageURI:resultURL.url

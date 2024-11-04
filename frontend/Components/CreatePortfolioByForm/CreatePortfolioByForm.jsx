@@ -22,8 +22,7 @@ export default function CreatePortfolioByForm(){
       const func=async()=>{
         try{
         if(isEdit){
-            const {data:{result:{userInfo}}}=await axios.get(`http://localhost:4000/view/getsingleuserportfolio/${portfolio}`)
-            console.log(userInfo);
+            const {data:{result:{userInfo}}}=await axios.get(`${import.meta.env.VITE_SERVER_URI}/view/getsingleuserportfolio/${portfolio}`)
             dispatch({type:"updateResume",userInfo:userInfo})
           }
         }
@@ -43,20 +42,19 @@ export default function CreatePortfolioByForm(){
       resumeCopy.profileImage="";
       formData.append("profileImage",profileImage);
     }
-    else{
-      console.log("no changes in profile img")
-    }
+    // else{
+      // console.log("no changes in profile img")
+    // }
     formData.append("portfolio",JSON.stringify(resumeCopy));
     bulletImages.forEach(bulletImage => {
       formData.append(bulletImage[0],bulletImage[1])
     });
-    console.log(formData)
+    // console.log(formData)
     // for (let [key, value] of formData.entries()) {
     //   console.log(`${key}:`, value);
     // }
     try{
       const {payload: data}=await reduxDispatch(createPortfolioByFormUser(formData))
-      console.log(data)
       if(data.success===false){
         alert(data.result.message);
       }
@@ -67,7 +65,7 @@ export default function CreatePortfolioByForm(){
         else{
           alert("Portfolio created successfully");
         }
-        console.log("now starting to navigate")
+        // console.log("now starting to navigate")
         navigate(`/user/${_id}`);
       }
     }
@@ -79,7 +77,7 @@ export default function CreatePortfolioByForm(){
     if(e.target.name==="profileImage"){
       const file=e.target.files[0];
       if(file){
-        console.log("entered here to handleImgchange for profile")
+        // console.log("entered here to handleImgchange for profile")
         dispatch({type:"resumeimageinput",etargetfile:file})
       }
     }

@@ -6,7 +6,6 @@ import { signupUser,signinUser } from "../../StateManagement/extraReducerFunctio
 import { setUserSignInput } from "../../StateManagement/userSlice.js";
 import loader from "../../Loader/loader.gif";
 export default function SigninOrSignup(){
-    console.log("again")
     const dispatch=useDispatch();
     const path=useLocation();
     const {isLoading}=useSelector((state)=>state.user);
@@ -14,7 +13,6 @@ export default function SigninOrSignup(){
     const [signinOrsignup,setSigninORsignup]=useState(path.pathname.slice(1));
     const [input,setInput]=useState({});
     const handleChange=(e)=>{
-        console.log(input)
         setInput({...input,[e.target.name]:e.target.value});
     }
     useEffect(()=>{
@@ -35,7 +33,6 @@ export default function SigninOrSignup(){
                 alert(payload.result.message);
                 return;
             }
-            console.log("everything was fine")
             setSigninORsignup("signin");
             navigate("../signin");
         }

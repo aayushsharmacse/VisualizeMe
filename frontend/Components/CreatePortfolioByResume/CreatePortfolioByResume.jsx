@@ -14,7 +14,7 @@ export default function CreatePortfolioByResume(){
     const [resume,setResume]=useState();
     const handleUploadResume=async(e)=>{
         if(e.target.files && e.target.files?.length!==0){
-            console.log(e.target.files[0])
+            // console.log(e.target.files[0])
             // console.log(resume)
             // console.log(e.target.files[0].name)
             // console.log(e.target.files[0].size)

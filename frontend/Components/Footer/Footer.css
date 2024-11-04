@@ -1,0 +1,23 @@
+
+.footerDiv{
+    margin: 2em 2em 0em 2em;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.socialicons{
+    margin-top: 2em;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    min-width: 300px;
+}
+@media screen and (max-width:480px){
+    /* .footerDiv{
+        flex-direction: column;
+    } */
+    .rightSide{
+        display: none;
+    }
+}

@@ -12,3 +12,9 @@
     text-decoration: none;
     color: var(--text);
 }
+.shiftToBottom{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
+}

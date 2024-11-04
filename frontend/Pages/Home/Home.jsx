@@ -7,6 +7,7 @@ import {faMagnifyingGlassArrowRight, faPersonRays, faPaperPlane,faJetFighterUp} 
 // import {fawand} from "@fortawesome/free-regular-svg-icons"
 import { faWandMagicSparkles } from "@fortawesome/free-solid-svg-icons";
 import {Link} from "react-router-dom";
+import Footer from "../../Components/Footer/Footer";
 export default function Home(){
     const {_id}=useSelector((state)=>state.user);
     return(
@@ -51,6 +52,7 @@ export default function Home(){
                 </>
                 }
             </div>
+            <Footer/>
         </div>
     );
 }

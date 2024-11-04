@@ -2,8 +2,11 @@ import { Outlet } from "react-router-dom";
 import "./HelpLayout.css";
 import { useSelector } from "react-redux";
 import HelpOptions from "../../Components/HelpOptions/HelpOptions.jsx"; 
+import Footer from "../../Components/Footer/Footer.jsx"
+import { useLocation } from "react-router-dom";
 export default function HelpLayout(){
     const {userName}=useSelector((state)=>state.user);
+    const {pathname}=useLocation();
     return (
         <div className="completeHelpLayoutDiv">
             <div className="headerTextForHelpLayoutDiv">
@@ -14,6 +17,18 @@ export default function HelpLayout(){
             </div>
             <HelpOptions/>
             <Outlet/>
+            {/* {
+                pathname==="/help" ?
+                (
+                    <div className="shiftToBottom">
+                        <Footer/>
+                    </div>
+                )
+                :
+                (
+                    <Footer/>
+                )
+            } */}
         </div>
     );
 }

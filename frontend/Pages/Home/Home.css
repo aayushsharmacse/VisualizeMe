@@ -34,7 +34,7 @@
     flex-direction: column;
     justify-content: space-evenly;
     text-align: center;
-    height: calc(100vh - 50px);
+    min-height: calc(100vh - 50px);
 }
 .section3Home button{
     min-width: 100px;
@@ -52,7 +52,7 @@
     flex-direction: column;
  }
  #img1{
-    height: calc(100vh - 110px);
+    height: calc(100vh - 120px);
     border-radius: 50%;
 }
 }

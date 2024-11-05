@@ -51,7 +51,7 @@ export default function Home(){
                 <>
                 <h1>Sign up now!</h1>
                 <br/>
-                <button><Link to={`/signup`}>Sign up</Link></button>
+                <Link to={`/signup`}><button>Sign up</button></Link>
                 </>
                 }
             </div>

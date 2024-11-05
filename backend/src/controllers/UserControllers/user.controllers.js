@@ -118,12 +118,12 @@ const SubmitPortfolioForm=asyncHandler(async(req,res)=>{
             // console.log(file.fieldname,resultURL.url);
             if(file.fieldname==="profileImage"){
                 userInfo.profileImage={
-                    imageURI:resultURL.url
+                    imageURI:resultURL.secure_url
                 }
             }else{
                 const [_,sectionIndex,bulletIndex]=file.fieldname.split("_");
                 userInfo.sections[sectionIndex].bullets[bulletIndex].bulletDisplayImage={
-                    imageURI:resultURL.url
+                    imageURI:resultURL.secure_url
                 }
             }
         }
@@ -136,12 +136,12 @@ const SubmitPortfolioForm=asyncHandler(async(req,res)=>{
         // console.log(file.fieldname,resultURL.url);
         if(file.fieldname==="profileImage"){
             userInfo.profileImage={
-                imageURI:resultURL.url
+                imageURI:resultURL.secure_url
             }
         }else{
             const [_,sectionIndex,bulletIndex]=file.fieldname.split("_");
             userInfo.sections[sectionIndex].bullets[bulletIndex].bulletDisplayImage={
-                imageURI:resultURL.url
+                imageURI:resultURL.secure_url
             }
         }
     }

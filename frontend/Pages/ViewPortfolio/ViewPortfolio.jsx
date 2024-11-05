@@ -10,6 +10,7 @@ import {faIdBadge} from "@fortawesome/free-regular-svg-icons";
 import {faArrowUpRightFromSquare} from "@fortawesome/free-solid-svg-icons";
 import {getsingleportfolioView} from "../../StateManagement/extraReducerFunctions.js";
 import bg from "../../Logo/img2.jfif";
+import { toggleIsLoading } from "../../StateManagement/userSlice.js";
 export default function ViewPortfolio(){
     const {isLoading,_id,isLoggedIn}=useSelector((state)=>state.user)
     const navigate=useNavigate();
@@ -24,8 +25,20 @@ export default function ViewPortfolio(){
     const handleSubmit=async(e)=>{
         e.preventDefault();
         if(contactDetails.name && contactDetails.email && contactDetails.message){
+            if(!String(contactDetails.email)
+                .toLowerCase()
+                .match(
+                  /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+                )){
+                    alert("Email is not correct");
+                    return ;
+            }
             try{
+            dispatch(toggleIsLoading());
             await axios.post(`${import.meta.env.VITE_SERVER_URI}/mail/sendmail`,{...contactDetails,portfolio})
+            dispatch(toggleIsLoading());
+            setContactDetails({});
+            alert("Send Successfully")
             }
             catch(e){
                 alert(e);
@@ -151,11 +164,11 @@ export default function ViewPortfolio(){
                         <form onSubmit={handleSubmit} >
                         <div><h3>Name:</h3>
                         </div>
-                            <input name="name" onChange={handleChange} type="text"/>
+                            <input name="name" value={contactDetails.name || ""} onChange={handleChange} type="text"/>
                         <div><h3>Email:</h3></div>
-                            <input name="email" onChange={handleChange} type="text"/>
+                            <input name="email" value={contactDetails.email || ""} onChange={handleChange} type="text"/>
                         <div><h3>Message:</h3></div>
-                            <textarea name="message" onChange={handleChange} type="text"/>
+                            <textarea name="message" value={contactDetails.message || ""} onChange={handleChange} type="text"/>
                         <br/>
                         <br/>
                         <button type="submit" className="submitbtn">Submit</button>

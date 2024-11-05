@@ -3,7 +3,7 @@ import cors from "cors";
 import cookieParser from "cookie-parser";
 import userRouter from "./routes/user.route.js";
 import viewRouter from "./routes/view.route.js"
-import mailRouter from "./routes/view.route.js";
+import mailRouter from "./routes/mail.route.js";
 import errHandlerMiddleware from "./middlewares/err.middleware.js";
 import notfountMiddleware from "./middlewares/notfound.middleware.js";
 

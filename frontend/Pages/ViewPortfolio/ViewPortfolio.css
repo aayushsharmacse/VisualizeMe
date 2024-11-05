@@ -132,6 +132,7 @@
 .contactMeForm>form>textarea{
     resize: vertical;
     height: 5em;
+    padding: 0.5em;
 }
 .contactMeForm>form>button{
     width: 10em;

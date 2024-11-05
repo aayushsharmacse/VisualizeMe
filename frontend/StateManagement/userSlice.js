@@ -27,6 +27,9 @@ const userSlice=createSlice({
         },
         setUserSignInput:(state,action)=>{
             state.userSignInput=action.payload;
+        },
+        toggleIsLoading:(state)=>{
+            state.isLoading=(!state.isLoading);
         }
     },
     extraReducers:(builder)=>{
@@ -124,5 +127,5 @@ const userSlice=createSlice({
     },
 })
 
-export const { setUserDetails,setUserSignInput }=userSlice.actions;
+export const { setUserDetails, setUserSignInput, toggleIsLoading }=userSlice.actions;
 export default userSlice.reducer;

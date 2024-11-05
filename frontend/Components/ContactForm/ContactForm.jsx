@@ -1,17 +1,24 @@
 import { useState } from "react";
 import "./ContactForm.css"
 import axios from "axios";
-import {useSelector} from "react-redux";
+import {useSelector,useDispatch} from "react-redux";
+import { toggleIsLoading } from "../../StateManagement/userSlice.js";
+import loader from  "../../Loader/loader.gif";
 export default function ContactForm(){
     const [mail,setMail]=useState({contact:"",message:"",name:""});
-    const accessToken=useSelector((state)=>state.user);
+    const {accessToken,isLoading}=useSelector((state)=>state.user);
+    const dispatch=useDispatch();
     const handleChange=(e)=>{
         setMail({...mail,[e.target.name]:e.target.value});
     }
     const handleSubmit=async()=>{
         if(mail.contact.trim()!="" && mail.message.trim()!="" && mail.name.trim()!=""){
             try{
+            dispatch(toggleIsLoading());
             await axios.post(`${import.meta.env.VITE_SERVER_URI}/mail/sendmail`,mail)
+            dispatch(toggleIsLoading());
+            alert("Send Successfully");
+            setMail({contact:"",message:"",name:""});
             }
             catch(e){
                 alert(e);
@@ -21,6 +28,13 @@ export default function ContactForm(){
             alert("Please fill all the fields")
         }
     }
+    if(isLoading){
+        return (
+            <div className="loaderDiv">
+                <img className="loaderImg" src={loader} />
+            </div>
+        );
+    }  
     return (
         <div className="contactFormDiv">
             <h3>Feedbacks? Request some feature? Contribute? Contact right now!!</h3>

@@ -1,9 +1,9 @@
 import "./About.css";
 import logo from "../../Logo/logo.png"
-import img1 from "../../Logo/1.png"
-import img2 from "../../Logo/2.png"
-import img3 from "../../Logo/3.png"
-import img4 from "../../Logo/4.png"
+import img1 from "../../Logo/1.PNG"
+import img2 from "../../Logo/2.PNG"
+import img3 from "../../Logo/3.PNG"
+import img4 from "../../Logo/4.PNG"
 export default function About(){
     return(
         <>

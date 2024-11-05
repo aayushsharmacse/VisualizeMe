@@ -1,5 +1,5 @@
 import nodemailer from "nodemailer";
-
+import path from "path";
 let transporter=nodemailer.createTransport({
     service:"gmail",
     auth:{
@@ -20,7 +20,7 @@ const sendMyMail=async(mail)=>{
             <p>${mail.message}</p><img src="cid:${cid}"/>`,
             attachments: [{
                 filename: 'visualizeME.png',
-                path: process.cwd()+"\\src\\logo.png",
+                path: path.join(process.cwd(), 'src', 'logo.png'),
                 cid: cid
             }]
         }
@@ -34,7 +34,7 @@ const sendMyMail=async(mail)=>{
             <img src="cid:${cid}"/>`,
             attachments: [{
                 filename: 'visualizeME.png',
-                path: process.cwd()+"\\src\\logo.png",
+                path: path.join(process.cwd(), 'src', 'logo.png'),
                 cid: cid
             }]
         }

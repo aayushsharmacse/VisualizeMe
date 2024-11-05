@@ -4,6 +4,8 @@
 
 This project is a personal project and open if anyone wants to contribute, and I will be actively working on new features and improvements. If you're interested in contributing, I will love to have your help!
 
+Try it out now! https://visualize-me.vercel.app/
+
 ## Table of Contents
 - [Overview](#overview)
 - [Features](#features)
@@ -85,16 +87,23 @@ Make sure you have the following installed:
     Put the placeholders with your actual values.
 
 ## Usage
+  To simply access the services use the following deployed project at https://visualize-me.vercel.app/
+
+  To run code on your local machine-
+  
   Run the following command to start both the backend and frontend services:
     ```
     npm run dev
-    ```  
+    ```
+    
   Access the Application
   Open your web browser and navigate to set port.
-  Ex:
+  
+  Eg:
     ```
     http://localhost:3000
     ```
+    
   You should see VisualizeMe running locally on your machine.
 
   __Additional Notes__
@@ -137,3 +146,7 @@ Make sure you have the following installed:
   - Make your changes.
   - Push to your forked repository.
   - Open a pull request with a description of your changes.
+
+## License
+   MIT License
+  

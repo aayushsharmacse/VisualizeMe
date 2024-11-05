@@ -21,7 +21,7 @@ export default function CreatePortfolioByForm(){
     useEffect(()=>{
       const func=async()=>{
         try{
-        if(isEdit){
+        if(isEdit==='edit'){
             const {data:{result:{userInfo}}}=await axios.get(`${import.meta.env.VITE_SERVER_URI}/view/getsingleuserportfolio/${portfolio}`)
             dispatch({type:"updateResume",userInfo:userInfo})
           }
@@ -59,7 +59,7 @@ export default function CreatePortfolioByForm(){
         alert(data.result.message);
       }
       else{
-        if(isEdit){
+        if(isEdit==='edit'){
           alert("Portfolio edited successfully");
         }
         else{

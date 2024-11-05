@@ -16,7 +16,10 @@ export default function Home(){
             height:"100%",
             backgroundImage: "url("+img2+")" ,
             backgroundAttachment:"fixed",
-            backgroundSize: "100%"
+            backgroundPosition:"fixed",
+            backgroundRepeat:"no-repeat",
+            backgroundSize: "100%",
+            objectFit:"cover"
         }}
         >
             <div className="section1Home">

@@ -47,12 +47,34 @@
     color: var(--text);
 }
 
+@media screen and (max-width:800px) {
+    .section1Home{
+       flex-direction: column;
+    }
+}
+
 @media screen and (max-width:480px) {
- .section1Home{
+    .completeHome{
+        background-image: none !important;
+    }
+    .completeHome h1{
+        font-size: medium;
+    }
+    .completeHome h2{
+        font-size: medium;
+    }
+    .section1Home{
     flex-direction: column;
- }
- #img1{
-    height: calc(100vh - 120px);
-    border-radius: 50%;
+    }
+    .img1Div{
+    width: 100%;
+    }
+    #img1{
+    max-width: 80%;
+    margin: 0em 2em;
+    }
+    .section3Home button{
+        margin: 1em auto;
+    }
 }
-}
+

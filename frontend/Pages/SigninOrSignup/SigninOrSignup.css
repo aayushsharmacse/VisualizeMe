@@ -3,6 +3,7 @@
     max-width: 20em;
     margin: auto;
     margin-top: 3em;
+    margin-bottom: 1em;
     display: flex;
     flex-direction: column;
     padding: 1em;

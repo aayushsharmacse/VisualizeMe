@@ -55,7 +55,7 @@ Make sure you have the following installed:
 1. Clone this repository:
    Start by cloning this repository to your local machine:
    ```
-   git clone [https://github.com/your-username/visualizeme.git](https://github.com/aayushsharmacse/VisualizeMe)
+   git clone https://github.com/your-username/visualizeme.git
    cd visualizeme
    
 2. Install Dependencies:
